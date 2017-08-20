@@ -1,14 +1,19 @@
 {
-    "name": "root/php-solid",
-    "description": "php with SOLID principles",
-    "type": "library",
-    "require": {
-        "phpunit/phpunit": "^6.3"
-    },
-    "authors": [
-        {
-            "name": "Marco Aurelio Maturana Silveira",
-            "email": "marco.maturana.ro@gmail.com"
-        }
-    ]
+  "name": "root/php-solid",
+  "description": "php with SOLID principles",
+  "type": "library",
+  "require": {
+      "phpunit/phpunit": "^6.3"
+  },
+  "authors": [
+      {
+          "name": "Marco Aurelio Maturana Silveira",
+          "email": "marco.maturana.ro@gmail.com"
+      }
+  ],
+  "autoload":{
+    "psr-4":{
+      "Solid\\Html\\": "src"
+    }
+  }
 }
