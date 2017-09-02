@@ -8,21 +8,29 @@
 
 namespace Solid\Html;
 
-
+/**
+ * Class Html
+ * @package Solid\Html
+ */
 class Html
 {
-    /**
-     * @param string $src Source of image to generate new <img> tag
-     *
-     * @return string Return a string with <img> tag
-     */
-    public function img(string $src) : string
+    public function __call($name, $arguments)
     {
-        return '<img src="' . $src . '">';
+        return $this->createTags($name, $arguments);
     }
 
-    public function a(string $href, string $anchor) : string
+    public static function __callStatic($name, $arguments)
     {
-        return '<a href="' . $href . '">' . $anchor . '</a>';
+        return self::createTags($name, $arguments);
+    }
+
+    protected static function createTags(string $name, array $arguments)
+    {
+        $class      = "\\Solid\Html\\Tag\\" . ucfirst($name);
+
+        array_unshift($arguments, new Attributes());
+
+        $reflection = new \ReflectionClass($class);
+        return $reflection->newInstanceArgs($arguments);
     }
 }
